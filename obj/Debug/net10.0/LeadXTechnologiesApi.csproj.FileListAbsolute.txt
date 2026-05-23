@@ -147,3 +147,4 @@ C:\Users\Coderz\leadx-technologies\LeadXTechnologiesApi\LeadXTechnologiesApi\bin
 C:\Users\Coderz\leadx-technologies\LeadXTechnologiesApi\LeadXTechnologiesApi\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Coderz\leadx-technologies\LeadXTechnologiesApi\LeadXTechnologiesApi\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Coderz\leadx-technologies\LeadXTechnologiesApi\LeadXTechnologiesApi\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\Coderz\leadx-technologies\LeadXTechnologiesApi\LeadXTechnologiesApi\obj\Debug\net10.0\LeadXTechnologiesApi.sourcelink.json

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LeadXTechnologiesApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5329075de245aded8c59ebca883f9fb35e6b51ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("LeadXTechnologiesApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LeadXTechnologiesApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

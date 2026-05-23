@@ -1,0 +1,11 @@
+﻿# Visual Studio
+.vs/
+bin/
+obj/
+
+# Node / Vue
+node_modules/
+dist/
+
+# env
+.env
