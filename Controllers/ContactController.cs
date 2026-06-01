@@ -3,6 +3,7 @@ using LeadXTechnologiesApi.Models;
 using LeadXTechnologiesApi.DTOs;
 using LeadXTechnologiesApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 namespace LeadXTechnologiesApi.Controllers
 {
     [ApiController]
@@ -42,6 +43,13 @@ namespace LeadXTechnologiesApi.Controllers
             {
                 message = "Contact Save and Email Send Successfully."
             });
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_context.ContactMessages.ToList());
         }
     }
 }

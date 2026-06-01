@@ -11,4 +11,5 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
+    public DbSet<AppUser> Users => Set<AppUser>();
 }

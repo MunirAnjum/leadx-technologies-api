@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "LeadXTechnologiesApi.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LeadXTechnologiesApi.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LeadXTechnologiesApi.Controllers.ContactController",
     "Method": "Send",
     "RelativePath": "Api/Contact",
@@ -13,6 +29,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LeadXTechnologiesApi.Controllers.ContactController",
+    "Method": "GetAll",
+    "RelativePath": "Api/Contact",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
