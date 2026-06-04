@@ -45,6 +45,28 @@ namespace LeadXTechnologiesApi.Controllers
             });
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var contact = await _context.ContactMessages
+                .FindAsync(id);
+
+            if (contact == null)
+            {
+                return NotFound(
+                    new
+                    {
+                        message = "Contact not found"
+                    });
+            }
+
+            _context.ContactMessages.Remove(contact);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [Authorize]
         [HttpGet]
         public IActionResult GetAll()
