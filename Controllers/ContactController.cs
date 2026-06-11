@@ -31,7 +31,8 @@ namespace LeadXTechnologiesApi.Controllers
                 Name = request.Name,
                 Email = request.Email,
                 Company = request.Company,
-                Message = request.Message
+                Message = request.Message,
+                Consent = request.Consent
             };
 
             _context.ContactMessages.Add(message);

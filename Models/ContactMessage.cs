@@ -9,6 +9,7 @@ namespace LeadXTechnologiesApi.Models
         public string Email { get; set; } = string.Empty;
         public string? Company { get; set; }
         public string Message { get; set; } = string.Empty;
+        public bool Consent { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
