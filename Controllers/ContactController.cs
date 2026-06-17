@@ -62,7 +62,7 @@ namespace LeadXTechnologiesApi.Controllers
             }
 
             _context.ContactMessages.Remove(contact);
-
+                
             await _context.SaveChangesAsync();
 
             return NoContent();
