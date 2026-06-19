@@ -16,8 +16,10 @@ builder.Services.AddSwaggerGen();
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
+options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+//options.UseSqlServer(
+//    builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Email
 builder.Services.Configure<EmailSettings>(
