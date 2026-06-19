@@ -13,33 +13,30 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// OpenAPI / Swagger (optional but useful)
-//builder.Services.AddOpenApi();
 
-//DbContext configure
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Email configuration
+// Email
 builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings"));
 
-// Dependency Injection
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-// CORS (allow frontend React/Vue)
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("FrontendPolicy", policy =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        policy
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin();
+        policy.WithOrigins("https://project-25pb2-7b30z7ldh-lead-x1.vercel.app")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
+// JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
 {
@@ -63,26 +60,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 Console.WriteLine(
     BCrypt.Net.BCrypt.HashPassword("Leadx@123")
 );
+
 var app = builder.Build();
 
-// Enable OpenAPI in development
+// Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    //app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
 
-// Enable CORS BEFORE authorization
-app.UseCors("FrontendPolicy");
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
-// Authorization not required for contact form
 app.UseAuthorization();
 
-// Map controllers
+app.UseStaticFiles();
+
 app.MapControllers();
 
 app.Run();

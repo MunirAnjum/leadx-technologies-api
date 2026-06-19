@@ -30,7 +30,6 @@ namespace LeadXTechnologiesApi.Controllers
                 Content = post.Content,
                 Author = post.Author,
                 Category = post.Category,
-                Icon = post.Icon,
                 CreatedAt = DateTime.Now,
             };
 
@@ -68,7 +67,6 @@ namespace LeadXTechnologiesApi.Controllers
             blog.Author = post.Author;
             blog.Summary = post.Summary;
             blog.Content = post.Content;
-            blog.Icon = post.Icon;
             blog.CreatedAt = post.CreatedAt;
 
             await _context.SaveChangesAsync();

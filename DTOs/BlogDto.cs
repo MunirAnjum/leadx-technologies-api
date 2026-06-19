@@ -8,6 +8,5 @@
         public string Author { get; set; } = "LeadX Team";
         public string Category { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public string Icon { get; set; } = string.Empty;
     }
 }
