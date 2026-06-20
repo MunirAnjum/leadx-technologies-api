@@ -16,8 +16,21 @@ builder.Services.AddSwaggerGen();
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        npgsqlOptions =>
+        {
+            npgsqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(10),
+                errorCodesToAdd: null
+            );
+        });
+});
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//options.UseNpgsql(
+//        builder.Configuration.GetConnectionString("DefaultConnection")));
 //options.UseSqlServer(
 //    builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -65,6 +78,8 @@ Console.WriteLine(
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
 // Swagger
 if (app.Environment.IsDevelopment())
 {
@@ -72,25 +87,28 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
-
 app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("DB Migration failed: " + ex.Message);
+    }
+}
 
 app.UseStaticFiles();
 
 app.MapControllers();
 
 app.MapGet("/", () => "LeadX API is running 🚀");
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
 
 app.Run();
