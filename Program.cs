@@ -86,6 +86,8 @@ app.UseStaticFiles();
 
 app.MapControllers();
 
+app.MapGet("/", () => "LeadX API is running 🚀");
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
