@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace LeadXTechnologiesApi.Controllers
 {
     [ApiController]
-    [Route("Api/[Controller]")]
+    [Route("api/[Controller]")]
     public class ContactController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -19,6 +19,7 @@ namespace LeadXTechnologiesApi.Controllers
             _emailService = emailService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Send(ContactRequestDto request)
         {
@@ -46,6 +47,7 @@ namespace LeadXTechnologiesApi.Controllers
             });
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

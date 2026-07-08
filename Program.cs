@@ -45,7 +45,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("https://project-25pb2-7b30z7ldh-lead-x1.vercel.app")
+        policy.WithOrigins(
+            "http://localhost:5173",
+            "https://localhost:5173", 
+            "https://project-25pb2-7b30z7ldh-lead-x1.vercel.app")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -71,10 +74,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         )
     };
 });
-
-Console.WriteLine(
-    BCrypt.Net.BCrypt.HashPassword("Leadx@123")
-);
 
 var app = builder.Build();
 
