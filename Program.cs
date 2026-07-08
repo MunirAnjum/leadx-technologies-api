@@ -48,7 +48,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "http://localhost:5173",
             "https://localhost:5173",
-            "https://https://project-25pb2.vercel.app")
+            "https://project-25pb2.vercel.app")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -86,7 +86,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowVercelFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
