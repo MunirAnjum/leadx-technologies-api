@@ -47,8 +47,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:5173",
-            "https://localhost:5173", 
-            "https://project-25pb2-7b30z7ldh-lead-x1.vercel.app")
+            "https://localhost:5173",
+            "https://https://project-25pb2.vercel.app")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
