@@ -46,7 +46,7 @@ namespace LeadXTechnologiesApi.Controllers
                 message = "Contact Save and Email Send Successfully."
             });
         }
-
+        
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

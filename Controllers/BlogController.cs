@@ -22,23 +22,29 @@ namespace LeadXTechnologiesApi.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+           
             var blogPost = new BlogPost
             {
                 Title = post.Title,
+                Slug = GenerateSlug(post.Title),
                 Summary = post.Summary,
                 Content = post.Content,
-                Author = post.Author,
+                Author = string.IsNullOrWhiteSpace(post.Author) ? "LeadX Team" : post.Author,
                 Category = post.Category,
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = null
             };
 
-            post.CreatedAt = DateTime.UtcNow;
             _context.BlogPosts.Add(blogPost);
             await _context.SaveChangesAsync();
-            return Ok(post);
+
+            return Ok(blogPost);
         }
 
+        private string GenerateSlug(string title)
+        {
+            return title.Trim().ToLower().Replace(" ", "-");
+        }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
