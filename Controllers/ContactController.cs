@@ -40,10 +40,18 @@ namespace LeadXTechnologiesApi.Controllers
             await _context.SaveChangesAsync();
 
             // Send Email
-            await _emailService.SendContactEmailAsync(request);
+            try
+            {
+                await _emailService.SendContactEmailAsync(request);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
             return Ok(new
             {
-                message = "Contact Save and Email Send Successfully."
+                message = "Your message has been received."
             });
         }
         
