@@ -28,11 +28,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             );
         });
 });
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//options.UseNpgsql(
-//        builder.Configuration.GetConnectionString("DefaultConnection")));
-//options.UseSqlServer(
-//    builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Email
 builder.Services.Configure<EmailSettings>(
@@ -76,8 +71,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 
 var app = builder.Build();
-
-//app.UseHttpsRedirection();
 
 // Swagger
 if (app.Environment.IsDevelopment())

@@ -14,6 +14,14 @@ namespace LeadXTechnologiesApi.Services
         public EmailService(IOptions<EmailSettings> settings)
         {
             _settings = settings.Value;
+
+            Console.WriteLine("===== EMAIL SETTINGS =====");
+            Console.WriteLine($"Host: {_settings.Host}");
+            Console.WriteLine($"Port: {_settings.Port}");
+            Console.WriteLine($"Username: {_settings.Username}");
+            Console.WriteLine($"Sender: {_settings.SenderEmail}");
+            Console.WriteLine($"Receiver: {_settings.ReceiverEmail}");
+            Console.WriteLine($"Password Exists: {!string.IsNullOrEmpty(_settings.Password)}");
         }
         public async Task SendContactEmailAsync(ContactRequestDto request)
         {
@@ -40,6 +48,41 @@ namespace LeadXTechnologiesApi.Services
             };
 
             using var smtp = new SmtpClient();
+
+            try
+            {
+                Console.WriteLine("Connecting...");
+
+                await smtp.ConnectAsync(
+                    _settings.Host,
+                    _settings.Port,
+                    SecureSocketOptions.StartTls);
+
+                Console.WriteLine("Connected");
+
+                Console.WriteLine("Authenticating...");
+
+                await smtp.AuthenticateAsync(
+                    _settings.Username,
+                    _settings.Password);
+
+                Console.WriteLine("Authenticated");
+
+                Console.WriteLine("Sending email...");
+
+                await smtp.SendAsync(email);
+
+                Console.WriteLine("Email sent");
+
+                await smtp.DisconnectAsync(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("EMAIL ERROR");
+                Console.WriteLine(ex.ToString());
+
+                throw;
+            }
 
             await smtp.ConnectAsync(
                 _settings.Host,
