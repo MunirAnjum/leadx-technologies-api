@@ -97,6 +97,10 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+Console.WriteLine("SMTP Host: " + builder.Configuration["EmailSettings:Host"]);
+Console.WriteLine("SMTP User: " + builder.Configuration["EmailSettings:Username"]);
+Console.WriteLine("SMTP Receiver: " + builder.Configuration["EmailSettings:ReceiverEmail"]);
+
 app.UseStaticFiles();
 
 app.MapControllers();

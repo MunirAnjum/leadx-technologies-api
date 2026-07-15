@@ -36,23 +36,24 @@ namespace LeadXTechnologiesApi.Controllers
                 Consent = request.Consent
             };
 
-            _context.ContactMessages.Add(message);
-            await _context.SaveChangesAsync();
-
-            // Send Email
             try
             {
+                _context.ContactMessages.Add(message);
+                await _context.SaveChangesAsync();
+
                 await _emailService.SendContactEmailAsync(request);
+
+                return Ok(new
+                {
+                    message = "Contact Save and Email Send Successfully."
+                });
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-            }
+                Console.WriteLine(ex.ToString());
 
-            return Ok(new
-            {
-                message = "Your message has been received."
-            });
+                return StatusCode(500, ex.Message);
+            }
         }
         
         [Authorize]
