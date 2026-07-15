@@ -78,7 +78,7 @@ namespace LeadXTechnologiesApi.Controllers
             return NoContent();
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {

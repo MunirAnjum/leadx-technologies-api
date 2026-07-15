@@ -5,6 +5,7 @@ using LeadXTechnologiesApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 namespace LeadXTechnologiesApi.Controllers
 {
     [ApiController]
@@ -16,7 +17,7 @@ namespace LeadXTechnologiesApi.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(BlogDto post)
         {
@@ -45,6 +46,7 @@ namespace LeadXTechnologiesApi.Controllers
         {
             return title.Trim().ToLower().Replace(" ", "-");
         }
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -61,6 +63,7 @@ namespace LeadXTechnologiesApi.Controllers
             return Ok(blog);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBlog(int id, BlogDto post)
         {
@@ -80,6 +83,7 @@ namespace LeadXTechnologiesApi.Controllers
             return Ok(blog);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
