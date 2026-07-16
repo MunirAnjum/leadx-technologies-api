@@ -44,6 +44,10 @@ builder.Services.AddResend(options =>
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 
+Console.WriteLine(
+    "Resend Key: " +
+    builder.Configuration["Resend:ApiKey"]
+);
 // CORS
 builder.Services.AddCors(options =>
 {
