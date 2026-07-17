@@ -44,9 +44,6 @@ builder.Services.AddResend(options =>
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-Console.WriteLine("ApiKey = " + builder.Configuration["Resend:ApiKey"]);
-Console.WriteLine("From = " + builder.Configuration["Resend:FromEmail"]);
-Console.WriteLine("To = " + builder.Configuration["Resend:ToEmail"]);
 // CORS
 builder.Services.AddCors(options =>
 {
@@ -113,9 +110,14 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-Console.WriteLine("SMTP Host: " + builder.Configuration["EmailSettings:Host"]);
-Console.WriteLine("SMTP User: " + builder.Configuration["EmailSettings:Username"]);
-Console.WriteLine("SMTP Receiver: " + builder.Configuration["EmailSettings:ReceiverEmail"]);
+Console.WriteLine(
+    Environment.GetEnvironmentVariable("Resend__ApiKey"));
+
+Console.WriteLine(
+    Environment.GetEnvironmentVariable("Resend__FromEmail"));
+
+Console.WriteLine(
+    Environment.GetEnvironmentVariable("Resend__ToEmail"));
 
 app.UseStaticFiles();
 
