@@ -36,7 +36,15 @@ namespace LeadXTechnologiesApi.Services
             <p><strong>Message:</strong></p>
             <p>{request.Message}</p>";
 
-            await _resend.EmailSendAsync(message);
+            var result = await _resend.EmailSendAsync(message);
+
+            Console.WriteLine($"Success: {result.Success}");
+            Console.WriteLine($"Response Type: {result.GetType().FullName}");
+
+            foreach (var property in result.GetType().GetProperties())
+            {
+                Console.WriteLine($"{property.Name} = {property.GetValue(result)}");
+            }
         }
     }
 
