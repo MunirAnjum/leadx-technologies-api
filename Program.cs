@@ -83,6 +83,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 
 var app = builder.Build();
+foreach (var kv in app.Configuration.AsEnumerable())
+{
+    Console.WriteLine($"{kv.Key} = {kv.Value}");
+}
 
 // Swagger
 if (app.Environment.IsDevelopment())
