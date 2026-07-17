@@ -39,8 +39,9 @@ builder.Services.Configure<ResendSettings>(
 
 builder.Services.AddResend(options =>
 {
-    options.ApiToken = builder.Configuration["Resend:ApiKey"]!;
+    options.ApiToken = (builder.Configuration["Resend:ApiKey"] ?? "").Trim();
 });
+
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 
