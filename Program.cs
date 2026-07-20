@@ -78,10 +78,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 
 var app = builder.Build();
-foreach (var kv in app.Configuration.AsEnumerable())
-{
-    Console.WriteLine($"{kv.Key} = {kv.Value}");
-}
 
 // Swagger
 if (app.Environment.IsDevelopment())
@@ -95,6 +91,7 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
+//DB migration check
 using (var scope = app.Services.CreateScope())
 {
     try
@@ -107,15 +104,6 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine("DB Migration failed: " + ex.Message);
     }
 }
-
-Console.WriteLine(
-    Environment.GetEnvironmentVariable("Resend__ApiKey"));
-
-Console.WriteLine(
-    Environment.GetEnvironmentVariable("Resend__FromEmail"));
-
-Console.WriteLine(
-    Environment.GetEnvironmentVariable("Resend__ToEmail"));
 
 app.UseStaticFiles();
 

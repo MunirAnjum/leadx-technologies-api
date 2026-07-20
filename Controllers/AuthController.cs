@@ -23,7 +23,6 @@ public class AuthController : ControllerBase
         _config = config;
     }
 
-    [Authorize]
     [HttpPost("login")]
     public IActionResult Login(LoginDto dto)
     {
