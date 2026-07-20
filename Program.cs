@@ -31,9 +31,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 // Email
-//builder.Services.Configure<EmailSettings>(
-//    builder.Configuration.GetSection("EmailSettings"));
-
 builder.Services.Configure<ResendSettings>(
     builder.Configuration.GetSection("Resend"));
 
